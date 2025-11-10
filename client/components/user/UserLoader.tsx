@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ApiUser } from "../../api/ApiAuth";
 import { User_Load } from "./userSlice";
+import Loader from "../../ui/Loader";
 
 export default function UserLoader() {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,6 +25,6 @@ export default function UserLoader() {
     })();
   }, []);
 
-  if (!initialized) return null;
+  if (!initialized) return <Loader />;
   return null;
 }

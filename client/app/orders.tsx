@@ -3,9 +3,10 @@ import { FlatList, Image, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import { IState } from "../store/store";
 import UserLoader from "../components/user/UserLoader";
-import { Link } from "expo-router";
 import LoginMessage from "../ui/LoginMessage";
 import OrderItem from "../components/order/OrderItem";
+import ThemView from "../ui/ThemView";
+import BackButton from "../ui/BackButton";
 
 export default function orders() {
   const { user, Auth } = useSelector((store: IState) => store.user);
@@ -15,7 +16,8 @@ export default function orders() {
 
   if (!Auth) return <LoginMessage />;
   return (
-    <>
+    <ThemView>
+      <BackButton />
       <UserLoader />
       <FlatList
         data={order}
@@ -24,6 +26,6 @@ export default function orders() {
           return <OrderItem item={item} />;
         }}
       />
-    </>
+    </ThemView>
   );
 }
