@@ -7,6 +7,7 @@ import { AppDispatch, IState } from "../../../store/store";
 import Error from "../../../ui/Error";
 import { AddItem, ICart } from "../../../components/cart/cartSlice";
 import ButtonOptions from "../../../ui/ButtonOptions";
+import Loader from "../../../ui/Loader";
 
 export default function CartId() {
   const { item, loader, error } = useSelector((store: IState) => store.menu);
@@ -17,6 +18,7 @@ export default function CartId() {
   useEffect(() => {
     dispatch(fetchItem(String(id)));
   }, [id]);
+  if (loader) return <Loader />;
   if (error) return <Error error={error} />;
 
   const onAdd = (): void => {

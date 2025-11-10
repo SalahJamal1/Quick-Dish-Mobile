@@ -6,6 +6,7 @@ import { AppDispatch, IState } from "../../store/store";
 import { ApiLogout } from "../../api/ApiAuth";
 import { User_Logout } from "../../components/user/userSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Profile() {
   const { Auth, user } = useSelector((store: IState) => store.user);
@@ -20,7 +21,7 @@ export default function Profile() {
     }
   };
   return (
-    <View style={styles.view}>
+    <SafeAreaView style={styles.view}>
       <View style={styles.heading}>
         <View style={styles.viewImg}>
           <Text style={styles.title}>
@@ -69,7 +70,7 @@ export default function Profile() {
           </>
         )}
       </>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
   },
   view: {
     marginTop: 30,
+    flex: 1,
     marginHorizontal: 20,
   },
   viewImg: {

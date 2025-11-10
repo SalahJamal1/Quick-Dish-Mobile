@@ -13,5 +13,6 @@ export default function ThemView({ children }: Props) {
 const styles = StyleSheet.create({
   view: {
     flex: 1,
+    marginTop: 30,
   },
 });

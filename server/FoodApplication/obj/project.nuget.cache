@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4XNk/Y/GKms=",
+  "dgSpecHash": "X5UzTIXhGRE=",
   "success": true,
-  "projectFilePath": "/Users/salah/Desktop/Quick-Dish-App-Backend/server/FoodApplication/FoodApplication.csproj",
+  "projectFilePath": "/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/FoodApplication.csproj",
   "expectedPackageFiles": [
     "/Users/salah/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/salah/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

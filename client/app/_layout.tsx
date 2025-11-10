@@ -50,9 +50,7 @@ export default function RootLayout() {
       <UserLoader />
       <Stack
         screenOptions={{
-          headerTitle: "Quick Dish",
-          headerStyle: { backgroundColor: "rgb(19 28 36)" },
-          headerTitleStyle: { fontSize: 18 },
+          headerShown: false,
           headerTintColor: "#fff",
           headerTitleAlign: "center",
           headerBackTitle: "Back",

@@ -10,6 +10,8 @@ import { ApiOrders } from "../../api/ApiOrder";
 import axios from "axios";
 import Toast from "react-native-toast-message";
 import { ClearItem } from "../../components/cart/cartSlice";
+import BackButton from "../../ui/BackButton";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Cart() {
   const router = useRouter();
@@ -62,6 +64,7 @@ export default function Cart() {
   return (
     <>
       <ThemView>
+        <BackButton />
         <Text style={styles.title}>
           Your Cart {Auth && user?.firstName?.toLocaleUpperCase()}
         </Text>

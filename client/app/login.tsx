@@ -17,6 +17,7 @@ import Toast from "react-native-toast-message";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import BackButton from "../ui/BackButton";
+import ThemView from "../ui/ThemView";
 
 export default function login() {
   const { err } = useSelector((store: IState) => store.user);
@@ -92,38 +93,41 @@ export default function login() {
   };
   return (
     <>
-      <StatusBar style="dark" />
-      <BackButton />
-      <View style={styles.view}>
-        <Text style={styles.title}>Ready to order? Let's go!</Text>
-        <Text style={styles.label}>Email</Text>
-        <TextInput
-          placeholder="John@example.com"
-          style={styles.input}
-          autoCapitalize="none"
-          autoCorrect={false}
-          textContentType="emailAddress"
-          keyboardType="email-address"
-          value={formData.email}
-          onChangeText={(v) => onChangeText(v, "email")}
-        />
-        {errors.email && <Text style={styles.error}>{errors.email}</Text>}
-        <Text style={styles.label}>Password</Text>
-        <TextInput
-          placeholder="Password"
-          style={styles.input}
-          secureTextEntry={true}
-          textContentType="password"
-          autoCapitalize="none"
-          autoCorrect={false}
-          value={formData.password}
-          onChangeText={(v) => onChangeText(v, "password")}
-        />
-        {errors.password && <Text style={styles.error}>{errors.password}</Text>}
-        <Link href="/signup" style={styles.signup}>
-          Create Account
-        </Link>
-      </View>
+      <ThemView>
+        <BackButton />
+        <View style={styles.view}>
+          <Text style={styles.title}>Ready to order? Let's go!</Text>
+          <Text style={styles.label}>Email</Text>
+          <TextInput
+            placeholder="John@example.com"
+            style={styles.input}
+            autoCapitalize="none"
+            autoCorrect={false}
+            textContentType="emailAddress"
+            keyboardType="email-address"
+            value={formData.email}
+            onChangeText={(v) => onChangeText(v, "email")}
+          />
+          {errors.email && <Text style={styles.error}>{errors.email}</Text>}
+          <Text style={styles.label}>Password</Text>
+          <TextInput
+            placeholder="Password"
+            style={styles.input}
+            secureTextEntry={true}
+            textContentType="password"
+            autoCapitalize="none"
+            autoCorrect={false}
+            value={formData.password}
+            onChangeText={(v) => onChangeText(v, "password")}
+          />
+          {errors.password && (
+            <Text style={styles.error}>{errors.password}</Text>
+          )}
+          <Link href="/signup" style={styles.signup}>
+            Create Account
+          </Link>
+        </View>
+      </ThemView>
       <Pressable style={styles.login} onPress={onSubmit}>
         <Text style={styles.text}>Login</Text>
       </Pressable>
@@ -136,7 +140,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     textAlign: "center",
     fontSize: 18,
-    paddingTop: 15,
+    paddingTop: 10,
     letterSpacing: 3,
     fontWeight: "600",
   },
@@ -183,7 +187,6 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     marginHorizontal: 30,
-    // position: "relative",
     display: "flex",
   },
 });

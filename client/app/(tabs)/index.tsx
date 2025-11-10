@@ -5,8 +5,7 @@ import { AppDispatch, IState } from "../../store/store";
 import { fetchMenu } from "../../components/menu/menuSlice";
 import MenuList from "../../components/menu/MenuList";
 import Error from "../../ui/Error";
-import { SafeAreaView } from "react-native-safe-area-context";
-import ThemView from "../../ui/ThemView";
+import Loader from "../../ui/Loader";
 
 export default function Home() {
   const catagory: string[] = ["shawerma", "pizza", "burger"];
@@ -19,11 +18,13 @@ export default function Home() {
   const menuFilter = (catagory: string) =>
     (menu ? menu : []).filter((item) => item.catagory === catagory);
 
+  if (loader) return <Loader />;
   if (error) return <Error error={error} />;
   return (
     <FlatList
       style={{
         paddingVertical: 10,
+        marginTop: 50,
       }}
       data={catagory}
       keyExtractor={(item) => item}

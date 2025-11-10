@@ -9146,11 +9146,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/salah/Desktop/Quick-Dish-App-Backend/server/FoodApplication/FoodApplication.csproj",
+      "projectUniqueName": "/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/FoodApplication.csproj",
       "projectName": "FoodApplication",
-      "projectPath": "/Users/salah/Desktop/Quick-Dish-App-Backend/server/FoodApplication/FoodApplication.csproj",
+      "projectPath": "/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/FoodApplication.csproj",
       "packagesPath": "/Users/salah/.nuget/packages/",
-      "outputPath": "/Users/salah/Desktop/Quick-Dish-App-Backend/server/FoodApplication/obj/",
+      "outputPath": "/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/salah/.nuget/NuGet/NuGet.Config"

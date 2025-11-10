@@ -20,6 +20,7 @@ import { ApiSignup } from "../api/ApiAuth";
 import axios from "axios";
 import Toast from "react-native-toast-message";
 import BackButton from "../ui/BackButton";
+import ThemView from "../ui/ThemView";
 
 export default function Signup() {
   const { err } = useSelector((store: IState) => store.user);
@@ -111,99 +112,103 @@ export default function Signup() {
   };
   return (
     <>
-      <BackButton />
-      <Text style={styles.title}>Ready to order? Let's go!</Text>
-      <ScrollView>
-        <View style={styles.view}>
-          <Text style={styles.label}>First Name</Text>
-          <TextInput
-            placeholder="First Name"
-            style={styles.input}
-            textContentType="name"
-            autoCapitalize="none"
-            autoCorrect={false}
-            value={formData.firstName}
-            onChangeText={(v) => onChangeText(v, "firstName")}
-          />
-          {errors.firstName && (
-            <Text style={styles.error}>{errors.firstName}</Text>
-          )}
-          <Text style={styles.label}>Last Name</Text>
-          <TextInput
-            placeholder="Last Name"
-            style={styles.input}
-            textContentType="name"
-            autoCapitalize="none"
-            autoCorrect={false}
-            value={formData.lastName}
-            onChangeText={(v) => onChangeText(v, "lastName")}
-          />
-          {errors.lastName && (
-            <Text style={styles.error}>{errors.lastName}</Text>
-          )}
-          <Text style={styles.label}>Email</Text>
-          <TextInput
-            placeholder="John@example.com"
-            style={styles.input}
-            textContentType="emailAddress"
-            autoCapitalize="none"
-            autoCorrect={false}
-            value={formData.email}
-            onChangeText={(v) => onChangeText(v, "email")}
-          />
-          {errors.email && <Text style={styles.error}>{errors.email}</Text>}
-          <Text style={styles.label}>Address</Text>
-          <TextInput
-            placeholder="Address"
-            style={styles.input}
-            textContentType="addressState"
-            autoCapitalize="none"
-            autoCorrect={false}
-            value={formData.Address}
-            onChangeText={(v) => onChangeText(v, "Address")}
-          />
-          {errors.Address && <Text style={styles.error}>{errors.Address}</Text>}
-          <Text style={styles.label}>Phone</Text>
-          <TextInput
-            placeholder="Phone"
-            style={styles.input}
-            textContentType="telephoneNumber"
-            value={formData.phoneNumber}
-            onChangeText={(v) => onChangeText(v, "phoneNumber")}
-          />
-          {errors.phoneNumber && (
-            <Text style={styles.error}>{errors.phoneNumber}</Text>
-          )}
-          <Text style={styles.label}>Password</Text>
-          <TextInput
-            placeholder="Password"
-            style={styles.input}
-            secureTextEntry={true}
-            textContentType="password"
-            autoCapitalize="none"
-            autoCorrect={false}
-            value={formData.password}
-            onChangeText={(v) => onChangeText(v, "password")}
-          />
-          {errors.password && (
-            <Text style={styles.error}>{errors.password}</Text>
-          )}
-          <Text style={styles.label}>Confirm Password</Text>
-          <TextInput
-            placeholder="Confirm Password"
-            style={styles.input}
-            secureTextEntry={true}
-            textContentType="password"
-            autoCapitalize="none"
-            autoCorrect={false}
-            value={formData.passwordConfirm}
-            onChangeText={(v) => onChangeText(v, "passwordConfirm")}
-          />
-          {errors.passwordConfirm && (
-            <Text style={styles.error}>{errors.passwordConfirm}</Text>
-          )}
-        </View>
-      </ScrollView>
+      <ThemView>
+        <BackButton />
+        <Text style={styles.title}>Ready to order? Let's go!</Text>
+        <ScrollView>
+          <View style={styles.view}>
+            <Text style={styles.label}>First Name</Text>
+            <TextInput
+              placeholder="First Name"
+              style={styles.input}
+              textContentType="name"
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={formData.firstName}
+              onChangeText={(v) => onChangeText(v, "firstName")}
+            />
+            {errors.firstName && (
+              <Text style={styles.error}>{errors.firstName}</Text>
+            )}
+            <Text style={styles.label}>Last Name</Text>
+            <TextInput
+              placeholder="Last Name"
+              style={styles.input}
+              textContentType="name"
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={formData.lastName}
+              onChangeText={(v) => onChangeText(v, "lastName")}
+            />
+            {errors.lastName && (
+              <Text style={styles.error}>{errors.lastName}</Text>
+            )}
+            <Text style={styles.label}>Email</Text>
+            <TextInput
+              placeholder="John@example.com"
+              style={styles.input}
+              textContentType="emailAddress"
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={formData.email}
+              onChangeText={(v) => onChangeText(v, "email")}
+            />
+            {errors.email && <Text style={styles.error}>{errors.email}</Text>}
+            <Text style={styles.label}>Address</Text>
+            <TextInput
+              placeholder="Address"
+              style={styles.input}
+              textContentType="addressState"
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={formData.Address}
+              onChangeText={(v) => onChangeText(v, "Address")}
+            />
+            {errors.Address && (
+              <Text style={styles.error}>{errors.Address}</Text>
+            )}
+            <Text style={styles.label}>Phone</Text>
+            <TextInput
+              placeholder="Phone"
+              style={styles.input}
+              textContentType="telephoneNumber"
+              value={formData.phoneNumber}
+              onChangeText={(v) => onChangeText(v, "phoneNumber")}
+            />
+            {errors.phoneNumber && (
+              <Text style={styles.error}>{errors.phoneNumber}</Text>
+            )}
+            <Text style={styles.label}>Password</Text>
+            <TextInput
+              placeholder="Password"
+              style={styles.input}
+              secureTextEntry={true}
+              textContentType="password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={formData.password}
+              onChangeText={(v) => onChangeText(v, "password")}
+            />
+            {errors.password && (
+              <Text style={styles.error}>{errors.password}</Text>
+            )}
+            <Text style={styles.label}>Confirm Password</Text>
+            <TextInput
+              placeholder="Confirm Password"
+              style={styles.input}
+              secureTextEntry={true}
+              textContentType="password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={formData.passwordConfirm}
+              onChangeText={(v) => onChangeText(v, "passwordConfirm")}
+            />
+            {errors.passwordConfirm && (
+              <Text style={styles.error}>{errors.passwordConfirm}</Text>
+            )}
+          </View>
+        </ScrollView>
+      </ThemView>
       <Pressable style={styles.signup} onPress={onSubmit}>
         <Text style={styles.text}> Create Account</Text>
       </Pressable>
