@@ -48,7 +48,7 @@ jobs:
 
       - name: Publish .NET App
         if: github.ref == 'refs/heads/main'
-        working-directory: server/FoodApplication/
+        working-directory: server
         run: dotnet publish -c Release -o ./publish
 
       - name: Build & Push Docker Image
@@ -58,5 +58,5 @@ jobs:
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
         run: |
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-          docker build -t $DOCKER_USER/quick-dish-backend:latest server/FoodApplication/
+          docker build -t $DOCKER_USER/quick-dish-backend:latest server
           docker push $DOCKER_USER/quick-dish-backend:latest
