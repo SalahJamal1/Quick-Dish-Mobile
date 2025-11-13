@@ -1,24 +1,21 @@
-# Use the official .NET 8 SDK to build
+# Stage 1: Build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
-# Copy csproj and restore as distinct layers
+# Copy solution and project files
 COPY *.sln .
-COPY ./FoodApplication/*.csproj ./YourProjectName/
-RUN dotnet restore ./YourProjectName/YourProjectName.csproj
+COPY ./FoodApplication/*.csproj ./FoodApplication/
+RUN dotnet restore ./FoodApplication/FoodApplication.csproj
 
-# Copy everything and build
+# Copy everything and publish
 COPY . .
-WORKDIR /app/YourProjectName
+WORKDIR /app/FoodApplication
 RUN dotnet publish -c Release -o /out
 
-# Build runtime image
+# Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /out .
 
-# Expose port 
 EXPOSE 5288
-
-# Define entrypoint
-ENTRYPOINT ["dotnet", "YourProjectName.dll"]
+ENTRYPOINT ["dotnet", "FoodApplication.dll"]
