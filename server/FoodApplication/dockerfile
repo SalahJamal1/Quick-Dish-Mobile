@@ -3,13 +3,15 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Copy solution and project files
-COPY *.sln .
-COPY *.csproj ./FoodApplication/
-RUN dotnet restore FoodApplication.csproj
+COPY *.sln .                                   
+COPY ./server/FoodApplication/*.csproj ./FoodApplication/ 
 
-# Copy everything and publish
-COPY . .
+# Move to project folder and restore
 WORKDIR /app/FoodApplication
+RUN dotnet restore
+
+# Copy rest of the files
+COPY ./server/FoodApplication .             
 RUN dotnet publish -c Release -o /out
 
 # Stage 2: Runtime
