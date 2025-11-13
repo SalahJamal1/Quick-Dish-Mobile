@@ -4,8 +4,8 @@ WORKDIR /app
 
 # Copy solution and project files
 COPY *.sln .
-COPY ./FoodApplication/*.csproj ./FoodApplication/
-RUN dotnet restore ./FoodApplication/FoodApplication.csproj
+COPY *.csproj ./FoodApplication/
+RUN dotnet restore ./FoodApplication.csproj
 
 # Copy everything and publish
 COPY . .
