@@ -940,11 +940,6 @@
 /Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/FoodApplication.sourcelink.json
 /Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/staticwebassets.build.json
 /Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/staticwebassets.development.json
-/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/staticwebassets/msbuild.FoodApplication.Microsoft.AspNetCore.StaticWebAssets.props
-/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/staticwebassets/msbuild.build.FoodApplication.props
-/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.FoodApplication.props
-/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.FoodApplication.props
-/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/staticwebassets.pack.json
 /Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/scopedcss/bundle/FoodApplication.styles.css
 /Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/FoodAppl.E5287543.Up2Date
 /Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/FoodApplication.dll
@@ -952,3 +947,10 @@
 /Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/FoodApplication.pdb
 /Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/FoodApplication.genruntimeconfig.cache
 /Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/ref/FoodApplication.dll
+/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/bin/Debug/net8.0/FoodApplication.staticwebassets.endpoints.json
+/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/rpswa.dswa.cache.json
+/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/rjimswa.dswa.cache.json
+/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/rjsmrazor.dswa.cache.json
+/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/rjsmcshtml.dswa.cache.json
+/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/staticwebassets.build.json.cache
+/Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication/obj/Debug/net8.0/staticwebassets.build.endpoints.json

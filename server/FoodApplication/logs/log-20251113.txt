@@ -1,0 +1,25 @@
+2025-11-13 15:42:44.807 +03:00 [INF] User profile is available. Using '/Users/salah/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-13 15:42:44.917 +03:00 [INF] Now listening on: http://0.0.0.0:5288
+2025-11-13 15:42:44.917 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-13 15:42:44.917 +03:00 [INF] Hosting environment: Development
+2025-11-13 15:42:44.918 +03:00 [INF] Content root path: /Users/salah/Desktop/Quick-Dish-Mobile/server/FoodApplication
+2025-11-13 15:42:45.707 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/swagger - null null
+2025-11-13 15:42:45.731 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/swagger - 301 null null 24.0917ms
+2025-11-13 15:42:45.748 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/swagger/index.html - null null
+2025-11-13 15:42:45.820 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/swagger/index.html - 200 null text/html;charset=utf-8 71.3202ms
+2025-11-13 15:42:46.338 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/swagger/swagger-ui.css - null null
+2025-11-13 15:42:46.338 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/swagger/swagger-ui-bundle.js - null null
+2025-11-13 15:42:46.339 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/swagger/swagger-ui-standalone-preset.js - null null
+2025-11-13 15:42:46.339 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-13 15:42:46.342 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/_framework/aspnetcore-browser-refresh.js - 200 16459 application/javascript; charset=utf-8 2.751ms
+2025-11-13 15:42:46.363 +03:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-11-13 15:42:46.368 +03:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-11-13 15:42:46.369 +03:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-11-13 15:42:46.369 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/swagger/swagger-ui.css - 200 152034 text/css 31.5834ms
+2025-11-13 15:42:46.369 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 30.1048ms
+2025-11-13 15:42:46.369 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 31.6955ms
+2025-11-13 15:42:46.557 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/swagger/v1/swagger.json - null null
+2025-11-13 15:42:46.572 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/swagger/favicon-32x32.png - null null
+2025-11-13 15:42:46.573 +03:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-11-13 15:42:46.573 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/swagger/favicon-32x32.png - 200 628 image/png 1.4595ms
+2025-11-13 15:42:46.630 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 73.1507ms
