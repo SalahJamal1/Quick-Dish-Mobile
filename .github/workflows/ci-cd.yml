@@ -48,7 +48,7 @@ jobs:
 
       - name: Publish .NET App
         if: github.ref == 'refs/heads/main'
-        working-directory: server
+        working-directory: server/FoodApplication/
         run: dotnet publish -c Release -o ./publish
 
       - name: Build & Push Docker Image
@@ -58,40 +58,5 @@ jobs:
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
         run: |
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-          docker build -t $DOCKER_USER/quick-dish-backend:latest ./server
+          docker build -t $DOCKER_USER/quick-dish-backend:latest server/FoodApplication/
           docker push $DOCKER_USER/quick-dish-backend:latest
-
-  frontend:
-    name: Build React Native App (Android)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install Dependencies
-        working-directory: mobile
-        run: npm ci
-
-      # Android build
-      - name: Setup Java (for Android)
-        uses: actions/setup-java@v4
-        with:
-          distribution: "temurin"
-          java-version: "17"
-
-      - name: Build Android App
-        working-directory: mobile/android
-        run: |
-          chmod +x gradlew
-          ./gradlew assembleRelease
-
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release
-          path: mobile/android/app/build/outputs/apk/release/app-release.apk
