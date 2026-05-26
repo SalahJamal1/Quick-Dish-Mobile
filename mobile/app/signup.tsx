@@ -114,13 +114,17 @@ export default function Signup() {
     <>
       <ThemView>
         <BackButton />
-        <Text style={styles.title}>Ready to order? Let's go!</Text>
-        <ScrollView>
+        <View style={styles.header}>
+          <Text style={styles.title}>Create Account</Text>
+          <Text style={styles.subtitle}>Sign up to start enjoying premium meals delivered to your doorstep. 🛵</Text>
+        </View>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
           <View style={styles.view}>
             <Text style={styles.label}>First Name</Text>
             <TextInput
-              placeholder="First Name"
-              style={styles.input}
+              placeholder="First name"
+              placeholderTextColor="#94A3B8"
+              style={[styles.input, errors.firstName && styles.inputError]}
               textContentType="name"
               autoCapitalize="none"
               autoCorrect={false}
@@ -130,10 +134,12 @@ export default function Signup() {
             {errors.firstName && (
               <Text style={styles.error}>{errors.firstName}</Text>
             )}
+
             <Text style={styles.label}>Last Name</Text>
             <TextInput
-              placeholder="Last Name"
-              style={styles.input}
+              placeholder="Last name"
+              placeholderTextColor="#94A3B8"
+              style={[styles.input, errors.lastName && styles.inputError]}
               textContentType="name"
               autoCapitalize="none"
               autoCorrect={false}
@@ -143,10 +149,12 @@ export default function Signup() {
             {errors.lastName && (
               <Text style={styles.error}>{errors.lastName}</Text>
             )}
-            <Text style={styles.label}>Email</Text>
+
+            <Text style={styles.label}>Email Address</Text>
             <TextInput
               placeholder="John@example.com"
-              style={styles.input}
+              placeholderTextColor="#94A3B8"
+              style={[styles.input, errors.email && styles.inputError]}
               textContentType="emailAddress"
               autoCapitalize="none"
               autoCorrect={false}
@@ -154,11 +162,13 @@ export default function Signup() {
               onChangeText={(v) => onChangeText(v, "email")}
             />
             {errors.email && <Text style={styles.error}>{errors.email}</Text>}
-            <Text style={styles.label}>Address</Text>
+
+            <Text style={styles.label}>Delivery Address</Text>
             <TextInput
-              placeholder="Address"
-              style={styles.input}
-              textContentType="addressState"
+              placeholder="Your delivery address"
+              placeholderTextColor="#94A3B8"
+              style={[styles.input, errors.Address && styles.inputError]}
+              textContentType="fullStreetAddress"
               autoCapitalize="none"
               autoCorrect={false}
               value={formData.Address}
@@ -167,21 +177,26 @@ export default function Signup() {
             {errors.Address && (
               <Text style={styles.error}>{errors.Address}</Text>
             )}
-            <Text style={styles.label}>Phone</Text>
+
+            <Text style={styles.label}>Phone Number</Text>
             <TextInput
-              placeholder="Phone"
-              style={styles.input}
+              placeholder="Phone number"
+              placeholderTextColor="#94A3B8"
+              style={[styles.input, errors.phoneNumber && styles.inputError]}
               textContentType="telephoneNumber"
+              keyboardType="phone-pad"
               value={formData.phoneNumber}
               onChangeText={(v) => onChangeText(v, "phoneNumber")}
             />
             {errors.phoneNumber && (
               <Text style={styles.error}>{errors.phoneNumber}</Text>
             )}
+
             <Text style={styles.label}>Password</Text>
             <TextInput
-              placeholder="Password"
-              style={styles.input}
+              placeholder="Create a strong password"
+              placeholderTextColor="#94A3B8"
+              style={[styles.input, errors.password && styles.inputError]}
               secureTextEntry={true}
               textContentType="password"
               autoCapitalize="none"
@@ -192,10 +207,12 @@ export default function Signup() {
             {errors.password && (
               <Text style={styles.error}>{errors.password}</Text>
             )}
+
             <Text style={styles.label}>Confirm Password</Text>
             <TextInput
-              placeholder="Confirm Password"
-              style={styles.input}
+              placeholder="Confirm your password"
+              placeholderTextColor="#94A3B8"
+              style={[styles.input, errors.passwordConfirm && styles.inputError]}
               secureTextEntry={true}
               textContentType="password"
               autoCapitalize="none"
@@ -209,57 +226,90 @@ export default function Signup() {
           </View>
         </ScrollView>
       </ThemView>
-      <Pressable style={styles.signup} onPress={onSubmit}>
-        <Text style={styles.text}> Create Account</Text>
-      </Pressable>
+      <View style={styles.bottomBar}>
+        <Pressable style={styles.signup} onPress={onSubmit}>
+          <Text style={styles.text}>Create Account</Text>
+        </Pressable>
+      </View>
     </>
   );
 }
 
 const styles = StyleSheet.create({
   text: {
-    color: "#fff",
+    color: "#FFFFFF",
     textAlign: "center",
-    fontSize: 18,
-    paddingTop: 15,
-    letterSpacing: 3,
-    fontWeight: "600",
-  },
-  label: {
-    fontSize: 18,
-    marginBottom: 5,
-    marginTop: 10,
-  },
-  error: {
-    marginTop: 5,
-    color: "red",
-
     fontSize: 16,
+    letterSpacing: 0.5,
+    fontWeight: "700",
   },
-  signup: {
-    backgroundColor: "rgb(19 28 36)",
-    width: "100%",
-    height: 70,
-    bottom: 0,
-
-    position: "static",
-  },
-
-  input: {
-    borderWidth: 1,
-    borderColor: "rgb(19 28 36)",
-    height: 45,
-    borderRadius: 7,
-    paddingHorizontal: 7,
-
-    fontSize: 18,
+  header: {
+    paddingHorizontal: 30,
+    marginBottom: 10,
   },
   title: {
-    fontSize: 20,
-    marginBottom: 10,
-    marginLeft: 30,
+    fontSize: 26,
+    fontWeight: "800",
+    color: "#0F172A",
+    marginBottom: 4,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: "#64748B",
+    lineHeight: 20,
+  },
+  label: {
+    fontSize: 11,
+    fontWeight: "800",
+    color: "#64748B",
+    textTransform: "uppercase",
+    letterSpacing: 1.0,
+    marginBottom: 6,
+    marginTop: 14,
+  },
+  error: {
+    marginTop: 4,
+    color: "#EF4444",
+    fontSize: 12,
+    fontWeight: "600",
+  },
+  bottomBar: {
+    backgroundColor: "#FFFFFF",
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderTopWidth: 1,
+    borderColor: "#F1F5F9",
+  },
+  signup: {
+    backgroundColor: "#FF5A36",
+    height: 52,
+    borderRadius: 26,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#FF5A36",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  scrollContent: {
+    paddingBottom: 30,
+  },
+  input: {
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderColor: "#E2E8F0",
+    height: 48,
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    fontSize: 15,
+    color: "#0F172A",
+  },
+  inputError: {
+    borderColor: "#EF4444",
   },
   view: {
     marginHorizontal: 30,
+    paddingBottom: 20,
   },
 });

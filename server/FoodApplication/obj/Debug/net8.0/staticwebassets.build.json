@@ -1,1 +1,11 @@
-{"Version":1,"Hash":"rbPMwX6+cuaUMAdWVDpDZcZNjIW6jcy6EgGt1xaNHvQ=","Source":"FoodApplication","BasePath":"_content/FoodApplication","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+{
+  "Version": 1,
+  "Hash": "WCI6IZyAs7FNEh0T4rEwnSF1rqxBZudZI/rydvyinfo=",
+  "Source": "FoodApplication",
+  "BasePath": "_content/FoodApplication",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

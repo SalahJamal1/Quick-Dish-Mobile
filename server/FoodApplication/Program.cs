@@ -34,7 +34,8 @@ builder.Services.AddIdentityCore<ApiUser>(options =>
     .AddRoles<IdentityRole>().AddEntityFrameworkStores<FoodDBContext>();
 builder.Services.AddCors(options => options
     .AddPolicy("AllowAll", b => b
-        .AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+        .WithOrigins("http://localhost:8081", "http://192.168.1.28:8081").AllowAnyMethod().AllowAnyHeader()
+        .AllowCredentials()));
 builder.Services.AddControllers();
 builder.Services.AddAuthentication(options =>
 {
@@ -116,6 +117,12 @@ if (app.Environment.IsDevelopment())
 }
 
 
+using (var scope = app.Services.CreateScope())
+{
+    var ctx = scope.ServiceProvider.GetRequiredService<FoodDBContext>();
+    DbSeeder.Seed(ctx);
+}
+
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 app.UseMiddleware<ExceptionMiddleware>();
@@ -128,15 +135,14 @@ app.Use(async (context, next) =>
     await next();
     if (context.Response.StatusCode == 404 && !context.Response.HasStarted)
     {
-        
-    context.Response.ContentType = "application/json";
-    var errorDetails = new ErrorDetails
-    {
-        ErrorType = "Not Found",
-        ErrorMessage = $"We could not find resource {context.Request.Path}"
-    };
-    var errors = JsonConvert.SerializeObject(errorDetails);
-    await context.Response.WriteAsync(errors);
+        context.Response.ContentType = "application/json";
+        var errorDetails = new ErrorDetails
+        {
+            ErrorType = "Not Found",
+            ErrorMessage = $"We could not find resource {context.Request.Path}"
+        };
+        var errors = JsonConvert.SerializeObject(errorDetails);
+        await context.Response.WriteAsync(errors);
     }
 });
 

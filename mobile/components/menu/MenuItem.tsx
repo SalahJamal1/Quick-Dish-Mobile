@@ -12,55 +12,66 @@ type Props = {
 export default function MenuItem({ item }: Props) {
   const { cart } = useSelector((store: IState) => store.cart);
   const currentQuantity = cart.find((c) => c.id === item.id)?.quantity;
+
   return (
-    <View style={{ marginHorizontal: 20, width: 200 }}>
+    <View style={styles.card}>
       <Image
         source={{ uri: item.imageUrl }}
         style={styles.img}
         resizeMode="cover"
       />
-      <Text style={styles.name}>{item.name}</Text>
-      <View style={styles.viewInfo}>
-        <Text style={styles.price}>${item.unitPrice}</Text>
-        {currentQuantity && (
-          <ButtonOptions id={item.id} quantity={currentQuantity} />
-        )}
+      <View style={styles.content}>
+        <Text style={styles.name} numberOfLines={1}>
+          {item.name}
+        </Text>
+        <View style={styles.viewInfo}>
+          <Text style={styles.price}>${item.unitPrice}</Text>
+          {currentQuantity && (
+            <ButtonOptions id={item.id} quantity={currentQuantity} />
+          )}
+        </View>
       </View>
     </View>
   );
 }
+
 const styles = StyleSheet.create({
-  view: {
-    marginHorizontal: 20,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 10,
-    paddingBottom: 10,
+  card: {
+    width: 200,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "#F1F5F9",
+    shadowColor: "#0F172A",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.03,
+    shadowRadius: 8,
+    elevation: 2,
+    overflow: "hidden",
+  },
+  img: {
+    height: 110,
+    width: "100%",
+    backgroundColor: "#F1F5F9",
+  },
+  content: {
+    padding: 12,
+  },
+  name: {
+    fontSize: 14,
+    fontWeight: "700",
+    color: "#0F172A",
+    marginBottom: 8,
   },
   viewInfo: {
-    display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-  },
-  img: {
-    height: 150,
-    width: 200,
-    borderRadius: 12,
-    marginBottom: 12,
-    backgroundColor: "#fff",
-  },
-  name: {
-    fontSize: 16,
-    width: 200,
-    fontWeight: "500",
-    marginBottom: 12,
+    minHeight: 28,
   },
   price: {
-    fontSize: 18,
-    fontWeight: "700",
-    marginBottom: 10,
-    alignSelf: "flex-end",
+    fontSize: 15,
+    fontWeight: "800",
+    color: "#FF5A36",
   },
 });

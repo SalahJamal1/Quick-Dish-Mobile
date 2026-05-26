@@ -12,25 +12,23 @@ type Props = {
 export default function MenuList({ menu, item }: Props) {
   const router = useRouter();
   return (
-    <View
-      style={{
-        marginBottom: 20,
-      }}
-    >
+    <View style={styles.container}>
       <Text style={styles.title}>{item}</Text>
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
         data={menu ? menu : []}
         keyExtractor={(item) => item.id}
+        contentContainerStyle={styles.horizontalList}
         renderItem={({ item }) => {
           return (
             <Pressable
               onPress={() =>
                 router.push(
-                  `(cart)/${item.id}?title=${encodeURIComponent(item.name)}`
+                  `(cart)/${item.id}?title=${encodeURIComponent(item.name)}`,
                 )
               }
+              style={styles.pressableItem}
             >
               <MenuItem item={item} />
             </Pressable>
@@ -42,14 +40,23 @@ export default function MenuList({ menu, item }: Props) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: 25,
+  },
   title: {
-    fontSize: 18,
+    fontSize: 20,
     textTransform: "capitalize",
-    fontWeight: "700",
-    letterSpacing: 3,
-    marginBottom: 20,
-    alignSelf: "flex-start",
-    color: "rgb(19 28 36)",
+    fontWeight: "800",
+    letterSpacing: 0.5,
+    marginBottom: 15,
+    color: "#0F172A",
     marginLeft: 20,
+  },
+  horizontalList: {
+    paddingHorizontal: 20,
+    paddingBottom: 10,
+  },
+  pressableItem: {
+    marginRight: 15,
   },
 });

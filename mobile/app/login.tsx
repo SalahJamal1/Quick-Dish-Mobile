@@ -96,11 +96,14 @@ export default function login() {
       <ThemView>
         <BackButton />
         <View style={styles.view}>
-          <Text style={styles.title}>Ready to order? Let's go!</Text>
-          <Text style={styles.label}>Email</Text>
+          <Text style={styles.title}>Welcome Back!</Text>
+          <Text style={styles.subtitle}>Log in to order and experience delicious food delivered fast. ⚡</Text>
+
+          <Text style={styles.label}>Email Address</Text>
           <TextInput
             placeholder="John@example.com"
-            style={styles.input}
+            placeholderTextColor="#94A3B8"
+            style={[styles.input, errors.email && styles.inputError]}
             autoCapitalize="none"
             autoCorrect={false}
             textContentType="emailAddress"
@@ -109,10 +112,12 @@ export default function login() {
             onChangeText={(v) => onChangeText(v, "email")}
           />
           {errors.email && <Text style={styles.error}>{errors.email}</Text>}
+
           <Text style={styles.label}>Password</Text>
           <TextInput
-            placeholder="Password"
-            style={styles.input}
+            placeholder="Enter your password"
+            placeholderTextColor="#94A3B8"
+            style={[styles.input, errors.password && styles.inputError]}
             secureTextEntry={true}
             textContentType="password"
             autoCapitalize="none"
@@ -123,70 +128,109 @@ export default function login() {
           {errors.password && (
             <Text style={styles.error}>{errors.password}</Text>
           )}
-          <Link href="/signup" style={styles.signup}>
-            Create Account
-          </Link>
+
+          <View style={styles.signupContainer}>
+            <Text style={styles.signupText}>Don't have an account? </Text>
+            <Link href="/signup" style={styles.signupLink}>
+              Create one
+            </Link>
+          </View>
         </View>
       </ThemView>
-      <Pressable style={styles.login} onPress={onSubmit}>
-        <Text style={styles.text}>Login</Text>
-      </Pressable>
+      <View style={styles.bottomBar}>
+        <Pressable style={styles.login} onPress={onSubmit}>
+          <Text style={styles.text}>Login</Text>
+        </Pressable>
+      </View>
     </>
   );
 }
 
 const styles = StyleSheet.create({
   text: {
-    color: "#fff",
+    color: "#FFFFFF",
     textAlign: "center",
-    fontSize: 18,
-    paddingTop: 10,
-    letterSpacing: 3,
-    fontWeight: "600",
+    fontSize: 16,
+    letterSpacing: 0.5,
+    fontWeight: "700",
   },
   label: {
-    fontSize: 18,
-    marginBottom: 5,
-    marginTop: 5,
+    fontSize: 11,
+    fontWeight: "800",
+    color: "#64748B",
+    textTransform: "uppercase",
+    letterSpacing: 1.0,
+    marginBottom: 6,
+    marginTop: 15,
   },
   error: {
-    marginTop: 5,
-    color: "red",
-    marginBottom: 5,
-    fontSize: 16,
+    marginTop: 4,
+    color: "#EF4444",
+    fontSize: 12,
+    fontWeight: "600",
+  },
+  bottomBar: {
+    backgroundColor: "#FFFFFF",
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderTopWidth: 1,
+    borderColor: "#F1F5F9",
   },
   login: {
-    backgroundColor: "rgb(19 28 36)",
-    width: "100%",
-    height: 70,
-    bottom: 0,
-
-    position: "static",
+    backgroundColor: "#FF5A36",
+    height: 52,
+    borderRadius: 26,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#FF5A36",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 3,
   },
-  signup: {
-    fontSize: 18,
-    borderBottomWidth: 1,
-    borderColor: "rgb(19 28 36)",
-    borderRadius: 7,
-    padding: 5,
-    marginTop: 10,
+  signupContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 20,
     alignSelf: "flex-start",
   },
+  signupText: {
+    fontSize: 14,
+    color: "#64748B",
+  },
+  signupLink: {
+    fontSize: 14,
+    fontWeight: "700",
+    color: "#FF5A36",
+  },
   input: {
+    backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "rgb(19 28 36)",
-    height: 45,
-    borderRadius: 7,
-    paddingHorizontal: 7,
-    fontSize: 18,
+    borderColor: "#E2E8F0",
+    height: 48,
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    fontSize: 15,
+    color: "#0F172A",
+  },
+  inputError: {
+    borderColor: "#EF4444",
   },
   title: {
-    fontSize: 20,
+    fontSize: 26,
+    fontWeight: "800",
+    color: "#0F172A",
+    marginBottom: 4,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: "#64748B",
+    lineHeight: 20,
     marginBottom: 20,
   },
   view: {
     flex: 1,
     marginHorizontal: 30,
-    display: "flex",
+    paddingTop: 10,
   },
 });

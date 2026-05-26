@@ -1,18 +1,18 @@
-import React, { ReactNode } from "react";
-import { StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { ReactNode } from "react";
+import { StyleSheet, View } from "react-native";
 
 type Props = {
   children: ReactNode;
 };
 
 export default function ThemView({ children }: Props) {
-  return <SafeAreaView style={styles.view}>{children}</SafeAreaView>;
+  return <View style={styles.view}>{children}</View>;
 }
 
 const styles = StyleSheet.create({
   view: {
+    paddingTop: 60,
     flex: 1,
-    marginTop: 30,
+    backgroundColor: "#F8FAFC",
   },
 });

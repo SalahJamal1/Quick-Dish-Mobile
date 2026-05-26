@@ -43,10 +43,18 @@ export default function Layout() {
             ) : null;
           },
           tabBarStyle: {
-            backgroundColor: "rgb(19 28 36)",
+            backgroundColor: "#FFFFFF",
+            borderTopWidth: 1,
+            borderTopColor: "#F1F5F9",
+            height: 64,
+            shadowColor: "#0F172A",
+            shadowOffset: { width: 0, height: -4 },
+            shadowOpacity: 0.04,
+            shadowRadius: 8,
+            elevation: 8,
           },
-          tabBarLabelStyle: { color: "#fff", fontSize: 18 },
-          tabBarItemStyle: { paddingVertical: 7, height: 100 },
+          tabBarLabelStyle: { fontSize: 11, fontWeight: "600" },
+          tabBarItemStyle: { paddingVertical: 8, height: 60 },
         }}
       >
         <Tabs.Screen
@@ -56,8 +64,10 @@ export default function Layout() {
               return (
                 <Text
                   style={{
-                    color: focused ? "white" : "#888",
-                    fontSize: 18,
+                    color: focused ? "#FF5A36" : "#64748B",
+                    fontSize: 11,
+                    fontWeight: "600",
+                    marginTop: 2,
                   }}
                 >
                   Home
@@ -68,8 +78,8 @@ export default function Layout() {
               return (
                 <AntDesign
                   name="home"
-                  size={24}
-                  color={focused ? "white" : "#888"}
+                  size={22}
+                  color={focused ? "#FF5A36" : "#64748B"}
                 />
               );
             },
@@ -83,8 +93,10 @@ export default function Layout() {
                 <Text
                   style={{
                     textTransform: "capitalize",
-                    fontSize: 18,
-                    color: focused ? "white" : "#888",
+                    fontSize: 11,
+                    fontWeight: "600",
+                    color: focused ? "#FF5A36" : "#64748B",
+                    marginTop: 2,
                   }}
                 >
                   Profile
@@ -95,8 +107,8 @@ export default function Layout() {
               return (
                 <AntDesign
                   name="user"
-                  size={24}
-                  color={focused ? "white" : "#888"}
+                  size={22}
+                  color={focused ? "#FF5A36" : "#64748B"}
                 />
               );
             },
@@ -111,8 +123,10 @@ export default function Layout() {
                 <Text
                   style={{
                     textTransform: "capitalize",
-                    fontSize: 18,
-                    color: focused ? "white" : "#888",
+                    fontSize: 11,
+                    fontWeight: "600",
+                    color: focused ? "#FF5A36" : "#64748B",
+                    marginTop: 2,
                   }}
                 >
                   Cart
@@ -123,8 +137,8 @@ export default function Layout() {
               return (
                 <AntDesign
                   name="shopping-cart"
-                  size={24}
-                  color={focused ? "white" : "#888"}
+                  size={22}
+                  color={focused ? "#FF5A36" : "#64748B"}
                 />
               );
             },

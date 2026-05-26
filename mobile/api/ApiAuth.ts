@@ -4,8 +4,10 @@ import { Platform } from "react-native";
 let baseURL: string = "";
 if (Platform.OS === "android") {
   baseURL = "http://10.0.2.2:5288/api/";
+} else if (Platform.OS === "ios") {
+  baseURL = "http://192.168.1.28:5288/api/";
 } else {
-  baseURL = "http://192.168.1.12:5288/api/";
+  baseURL = "http://localhost:5288/api/";
 }
 
 export const api = axios.create({
@@ -21,7 +23,7 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 export async function ApiLogin(data: any) {
   const res = await api.post("auth/login", data);

@@ -65,93 +65,151 @@ export default function Cart() {
     <>
       <ThemView>
         <BackButton />
-        <Text style={styles.title}>
-          Your Cart {Auth && user?.firstName?.toLocaleUpperCase()}
-        </Text>
+        <View style={styles.header}>
+          <Text style={styles.title}>My Basket</Text>
+          {Auth && user?.firstName && (
+            <Text style={styles.subtitle}>Let's checkout, {user.firstName}! 👋</Text>
+          )}
+        </View>
         <FlatList
           data={cart}
           keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
           renderItem={({ item }) => {
             return <CartItem item={item} />;
           }}
+          contentContainerStyle={styles.listContainer}
         />
         <View style={styles.mainView}>
           <View style={styles.viewInfo}>
-            <Text style={styles.text}>Basket total :</Text>
+            <Text style={styles.text}>Basket total</Text>
             <Text style={styles.price}>${totalPrice}</Text>
           </View>
           <View style={styles.viewInfo}>
-            <Text style={styles.text}>Delivery Fees :</Text>
+            <Text style={styles.text}>Delivery Fees</Text>
             <Text style={styles.price}>${Fees}</Text>
           </View>
-          <View style={styles.viewInfo}>
-            <Text style={styles.text}>Order Total :</Text>
-            <Text style={styles.price}>${orderPrice}</Text>
+          <View style={[styles.viewInfo, styles.totalRow]}>
+            <Text style={styles.totalText}>Order Total</Text>
+            <Text style={styles.totalPrice}>${orderPrice}</Text>
           </View>
         </View>
       </ThemView>
-      <Pressable
-        style={styles.btn}
-        disabled={loader}
-        onPress={() => {
-          if (!Auth) {
-            router.push("login");
-          } else {
-            onSubmit();
-          }
-        }}
-      >
-        <Text style={styles.btnText}>
-          {loader ? "Loading..." : Auth ? "Order Now" : "Login"}
-        </Text>
-      </Pressable>
+      <View style={styles.bottomBar}>
+        <Pressable
+          style={[styles.btn, loader && styles.btnDisabled]}
+          disabled={loader}
+          onPress={() => {
+            if (!Auth) {
+              router.push("login");
+            } else {
+              onSubmit();
+            }
+          }}
+        >
+          <Text style={styles.btnText}>
+            {loader ? "Processing..." : Auth ? `Order Now • $${orderPrice}` : "Login to Checkout"}
+          </Text>
+        </Pressable>
+      </View>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  title: {
-    marginLeft: 20,
-    borderBottomWidth: 1,
-    borderColor: "rgb(19 28 36)",
-    alignSelf: "flex-start",
-    paddingBottom: 3,
-    fontSize: 18,
-    color: "rgb(19 28 36)",
+  header: {
+    paddingHorizontal: 20,
     marginBottom: 20,
   },
+  title: {
+    fontSize: 24,
+    fontWeight: "800",
+    color: "#0F172A",
+  },
+  subtitle: {
+    fontSize: 14,
+    color: "#64748B",
+    marginTop: 4,
+  },
+  listContainer: {
+    paddingBottom: 15,
+  },
   mainView: {
-    backgroundColor: "#ddd",
+    backgroundColor: "#FFFFFF",
     marginHorizontal: 20,
-    paddingVertical: 15,
+    marginTop: 10,
+    marginBottom: 20,
+    borderRadius: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+    borderColor: "#F1F5F9",
+    shadowColor: "#0F172A",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.02,
+    shadowRadius: 8,
+    elevation: 2,
   },
   viewInfo: {
-    display: "flex",
     flexDirection: "row",
-    paddingHorizontal: 20,
-    marginBottom: 10,
     justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 8,
   },
-
+  totalRow: {
+    borderTopWidth: 1,
+    borderTopColor: "#F1F5F9",
+    marginTop: 8,
+    paddingTop: 12,
+  },
   text: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: "600",
-    textTransform: "capitalize",
+    color: "#64748B",
   },
   price: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "700",
+    color: "#0F172A",
+  },
+  totalText: {
+    fontSize: 15,
+    fontWeight: "800",
+    color: "#0F172A",
+  },
+  totalPrice: {
+    fontSize: 18,
+    fontWeight: "800",
+    color: "#FF5A36",
+  },
+  bottomBar: {
+    backgroundColor: "#FFFFFF",
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderTopWidth: 1,
+    borderColor: "#F1F5F9",
   },
   btn: {
-    backgroundColor: "rgb(19 28 36)",
-    paddingVertical: 15,
-    paddingHorizontal: 10,
-    height: 70,
+    backgroundColor: "#FF5A36",
+    height: 52,
+    borderRadius: 26,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#FF5A36",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  btnDisabled: {
+    backgroundColor: "#CBD5E1",
+    shadowOpacity: 0,
+    elevation: 0,
   },
   btnText: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#fff",
-    textAlign: "center",
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#FFFFFF",
+    letterSpacing: 0.5,
   },
 });

@@ -17,7 +17,7 @@ export default function BackButton() {
       }}
       style={styles.btn}
     >
-      <Ionicons name="arrow-back-sharp" size={16} color="dark" />
+      <Ionicons name="arrow-back" size={16} color="#0F172A" />
       <Text style={styles.text}>Back</Text>
     </Pressable>
   );
@@ -25,16 +25,28 @@ export default function BackButton() {
 
 const styles = StyleSheet.create({
   btn: {
-    display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 30,
+    alignSelf: "flex-start",
+    backgroundColor: "#FFFFFF",
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    shadowColor: "#0F172A",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 5,
+    elevation: 1,
+    borderWidth: 1,
+    borderColor: "#E2E8F0",
     marginLeft: 20,
+    marginTop: 10,
+    marginBottom: 20,
   },
   text: {
-    color: "#222",
-    fontSize: 16,
-    fontWeight: "500",
-    marginLeft: 5,
+    color: "#0F172A",
+    fontSize: 14,
+    fontWeight: "600",
+    marginLeft: 6,
   },
 });

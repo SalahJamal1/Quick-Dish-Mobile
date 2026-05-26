@@ -7,93 +7,158 @@ type Props = {
 };
 
 const Dateformat = (date: string): string => {
-  return new Intl.DateTimeFormat("en-us", {
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(new Date(date));
+  try {
+    return new Intl.DateTimeFormat("en-us", {
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(new Date(date));
+  } catch (e) {
+    return "";
+  }
 };
+
 const calcMin = (date: string): number => {
   const diffMs = new Date(date).getTime() - new Date().getTime();
-  return Math.abs(Math.round(diffMs / 60000));
+  return Math.max(0, Math.round(diffMs / 60000));
 };
 
 export default function OrderItem({ item }: Props) {
+  const isPreparing = item.status === 0;
+
   return (
-    <View style={styles.mainView}>
-      <View style={styles.view}>
-        <Text style={styles.orderNo}>Order No.{item.id}</Text>
-        <Text
+    <View style={styles.card}>
+      <View style={styles.headerRow}>
+        <Text style={styles.orderNo}>Order #{item.id}</Text>
+        <View
           style={[
-            styles.status,
-            {
-              backgroundColor: item.status === 0 ? "red" : "green",
-            },
+            styles.badge,
+            isPreparing ? styles.badgePreparing : styles.badgeDelivered,
           ]}
         >
-          {item.status === 0 ? "Preparing" : "Delivered"}
-        </Text>
-      </View>
-      {item.actualDelivery === null && (
-        <View style={styles.view}>
-          <Text style={styles.time}>
-            Delivery on: {Dateformat(item.estimatedDelivery)}
-          </Text>
-          <Text style={styles.delivery}>
-            Only {calcMin(item.estimatedDelivery)} minutes left 😃
+          <Text
+            style={[
+              styles.statusText,
+              isPreparing ? styles.statusPreparing : styles.statusDelivered,
+            ]}
+          >
+            {isPreparing ? "Preparing" : "Delivered"}
           </Text>
         </View>
+      </View>
+
+      {item.actualDelivery === null && (
+        <View style={styles.trackerBox}>
+          <View style={styles.trackerRow}>
+            <Text style={styles.timeLabel}>Delivery Time</Text>
+            <Text style={styles.timeValue}>{Dateformat(item.estimatedDelivery)}</Text>
+          </View>
+          <View style={[styles.trackerRow, { marginTop: 6 }]}>
+            <Text style={styles.deliveryLabel}>
+              ⚡ Arriving in {calcMin(item.estimatedDelivery)} mins
+            </Text>
+          </View>
+        </View>
       )}
-      <View style={styles.viewPrice}>
-        <Text style={styles.priceTint}>Order Price: </Text>
-        <Text style={styles.price}>${item.orderPrice}</Text>
+
+      <View style={styles.priceRow}>
+        <Text style={styles.priceLabel}>Order Total</Text>
+        <Text style={styles.priceText}>${item.orderPrice}</Text>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  mainView: {
+  card: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    padding: 16,
     marginHorizontal: 20,
-    marginVertical: 10,
-    backgroundColor: "#ddd",
-    padding: 10,
+    marginVertical: 8,
+    borderWidth: 1,
+    borderColor: "#F1F5F9",
+    shadowColor: "#0F172A",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.02,
+    shadowRadius: 6,
+    elevation: 2,
   },
-  view: {
-    display: "flex",
+  headerRow: {
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 5,
+    alignItems: "center",
+    marginBottom: 14,
   },
   orderNo: {
-    fontSize: 16,
-    fontWeight: "600",
+    fontSize: 15,
+    fontWeight: "800",
+    color: "#0F172A",
   },
-  status: {
+  badge: {
+    paddingVertical: 4,
+    paddingHorizontal: 12,
     borderRadius: 12,
-    color: "#fff",
-    fontWeight: "600",
-    paddingVertical: 2,
-    paddingHorizontal: 10,
   },
-  time: {
-    fontSize: 14,
-    fontWeight: "500",
-    marginBottom: 5,
+  badgePreparing: {
+    backgroundColor: "#FFF7ED",
   },
-  delivery: {
-    fontSize: 14,
-    fontWeight: "500",
-    marginBottom: 5,
+  badgeDelivered: {
+    backgroundColor: "#ECFDF5",
   },
-  viewPrice: {
-    display: "flex",
+  statusText: {
+    fontSize: 12,
+    fontWeight: "700",
+  },
+  statusPreparing: {
+    color: "#EA580C",
+  },
+  statusDelivered: {
+    color: "#10B981",
+  },
+  trackerBox: {
+    backgroundColor: "#F8FAFC",
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 14,
+    borderWidth: 1,
+    borderColor: "#F1F5F9",
+  },
+  trackerRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginTop: 5,
-    marginRight: 10,
   },
-  priceTint: { fontSize: 16, fontWeight: "600" },
-  price: { fontSize: 16 },
+  timeLabel: {
+    fontSize: 13,
+    color: "#64748B",
+    fontWeight: "500",
+  },
+  timeValue: {
+    fontSize: 13,
+    color: "#0F172A",
+    fontWeight: "700",
+  },
+  deliveryLabel: {
+    fontSize: 13,
+    color: "#FF5A36",
+    fontWeight: "700",
+  },
+  priceRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderTopWidth: 1,
+    borderTopColor: "#F1F5F9",
+    paddingTop: 12,
+  },
+  priceLabel: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#64748B",
+  },
+  priceText: {
+    fontSize: 16,
+    fontWeight: "800",
+    color: "#FF5A36",
+  },
 });
