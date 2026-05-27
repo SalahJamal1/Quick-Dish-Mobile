@@ -5,7 +5,7 @@ let baseURL: string = "";
 if (Platform.OS === "android") {
   baseURL = "http://10.0.2.2:5288/api/";
 } else if (Platform.OS === "ios") {
-  baseURL = "http://192.168.1.28:5288/api/";
+  baseURL = "http://192.168.1.27:5288/api/";
 } else {
   baseURL = "http://localhost:5288/api/";
 }

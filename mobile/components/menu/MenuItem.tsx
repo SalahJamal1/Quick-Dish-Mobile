@@ -1,9 +1,18 @@
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import {
+  Animated,
+  Easing,
+  Image,
+  StyleSheet,
+  Text,
+  useAnimatedValue,
+  View,
+} from "react-native";
 import { IItem } from "./menuSlice";
 import { useSelector } from "react-redux";
 import { IState } from "../../store/store";
 import ButtonOptions from "../../ui/ButtonOptions";
+import ImageAnimated from "../../ui/ImageAnimated";
 
 type Props = {
   item: IItem;
@@ -13,13 +22,30 @@ export default function MenuItem({ item }: Props) {
   const { cart } = useSelector((store: IState) => store.cart);
   const currentQuantity = cart.find((c) => c.id === item.id)?.quantity;
 
+  const anim = useAnimatedValue(0);
+  useEffect(() => {
+    anim.setValue(0);
+    Animated.timing(anim, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+      easing: Easing.out(Easing.ease),
+    }).start();
+  }, []);
+  const opacity = anim.interpolate({ inputRange: [0, 1], outputRange: [0, 1] });
+  const blur = anim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
+  const scale = anim.interpolate({ inputRange: [0, 1], outputRange: [0, 1] });
   return (
-    <View style={styles.card}>
-      <Image
-        source={{ uri: item.imageUrl }}
-        style={styles.img}
-        resizeMode="cover"
-      />
+    <Animated.View
+      style={[
+        styles.card,
+        {
+          opacity,
+          transform: [{ scale }],
+        },
+      ]}
+    >
+      <ImageAnimated uri={item.imageUrl} image={styles.img} />
       <View style={styles.content}>
         <Text style={styles.name} numberOfLines={1}>
           {item.name}
@@ -31,7 +57,7 @@ export default function MenuItem({ item }: Props) {
           )}
         </View>
       </View>
-    </View>
+    </Animated.View>
   );
 }
 
@@ -41,7 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: "#F1F5F9",
+    borderColor: "#22212118",
     shadowColor: "#0F172A",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.03,

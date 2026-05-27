@@ -1,6 +1,16 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useEffect } from "react";
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Animated,
+  Easing,
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  useAnimatedValue,
+  View,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchItem } from "../../../components/menu/menuSlice";
 import { AppDispatch, IState } from "../../../store/store";
@@ -9,21 +19,18 @@ import { AddItem, ICart } from "../../../components/cart/cartSlice";
 import ButtonOptions from "../../../ui/ButtonOptions";
 import Loader from "../../../ui/Loader";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import ImageAnimated from "../../../ui/ImageAnimated";
 
 export default function CartId() {
   const { item, loader, error } = useSelector((store: IState) => store.menu);
   const { cart } = useSelector((store: IState) => store.cart);
   const router = useRouter();
-
   const { id } = useLocalSearchParams();
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(fetchItem(String(id)));
   }, [id]);
-
-  if (loader) return <Loader />;
-  if (error) return <Error error={error} />;
 
   const onAdd = (): void => {
     const newItem: ICart = {
@@ -39,19 +46,19 @@ export default function CartId() {
   };
 
   const quantity: number | undefined = cart.find(
-    (c) => String(c.id) === String(id)
+    (c) => String(c.id) === String(id),
   )?.quantity;
-
+  if (loader && !item) return <Loader />;
+  if (error) return <Error error={error} />;
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
         {/* Immersive Image Header */}
         <View style={styles.imageContainer}>
-          <Image
-            source={{ uri: item.imageUrl }}
-            style={styles.heroImg}
-            resizeMode="cover"
-          />
+          <ImageAnimated uri={item.imageUrl} image={styles.heroImg} />
           {/* Floating Back Button */}
           <Pressable style={styles.floatingBack} onPress={() => router.back()}>
             <Ionicons name="arrow-back" size={20} color="#0F172A" />

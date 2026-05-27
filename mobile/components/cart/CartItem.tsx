@@ -4,6 +4,7 @@ import { ICart } from "./cartSlice";
 import ButtonOptions from "../../ui/ButtonOptions";
 import { useSelector } from "react-redux";
 import { IState } from "../../store/store";
+import ImageAnimated from "../../ui/ImageAnimated";
 
 type Props = {
   item: ICart;
@@ -12,16 +13,12 @@ type Props = {
 export default function CartItem({ item }: Props) {
   const { cart } = useSelector((store: IState) => store.cart);
   const quantity: number | undefined = cart.find(
-    (c) => c.id === item.id
+    (c) => c.id === item.id,
   )?.quantity;
 
   return (
     <View style={styles.card}>
-      <Image
-        source={{ uri: item.imageUrl }}
-        style={styles.img}
-        resizeMode="cover"
-      />
+      <ImageAnimated uri={item.imageUrl} image={styles.img} />
       <View style={styles.details}>
         <Text style={styles.name} numberOfLines={1}>
           {item.name}
